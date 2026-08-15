@@ -1,11 +1,9 @@
 {
-  "creators": [
-    {
-      "affiliation": "Independent",
-      "name": "Bird, Haley Ann"
-    }
-  ],
-  "description": "Session output: genuine scientific gaps synthesis across realms - 2026-07-28",
+  "creators": [{"affiliation": "Independent", "name": "Bird, Haley Ann"}],
+  "description": "A repository containing an autonomous research synthesis of scientific knowledge gaps across domains.",
   "publication_date": "2026-07-28",
-  "title": "autonomous-research-gaps-2026"
+  "title": "autonomous-research-gaps-2026",
+  "version": "0.1.0",
+  "license": "SEE_LICENSE_FILE",
+  "keywords": ["autonomous research", "scientific knowledge gaps", "research synthesis", "cross-domain analysis"]
 }
