@@ -14,7 +14,7 @@ concurrency:
   group: public-runner-proof-${{ github.ref }}
   cancel-in-progress: true
 
-# Execution proof only. No repository content is published by this workflow.
+# Execution proof only. The default branch now contains the verifier that observes this PR.
 jobs:
   prove-python:
     runs-on: ubuntu-latest
