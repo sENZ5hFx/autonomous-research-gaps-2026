@@ -37,7 +37,7 @@ jobs:
           python - <<'PY'
           import hashlib
           payload = b'hardened-ci-proof'
-          assert hashlib.sha256(payload).hexdigest() == '4b5ac4f8c33278d756a2e17fae6923205599045d29f664cf0d19fbb778b7bb3e'
+          assert hashlib.sha256(payload).hexdigest() == '8073bdf99161592a86944d023c2586f0da8aadf39e2e5d18906edac1e28f6cad'
           PY
 
   prove-node:
@@ -58,7 +58,7 @@ jobs:
       - name: Prove Node runtime
         run: |
           node --version
-          node -e "const c=require('crypto'); const h=c.createHash('sha256').update('hardened-ci-proof').digest('hex'); if(h!=='4b5ac4f8c33278d756a2e17fae6923205599045d29f664cf0d19fbb778b7bb3e') process.exit(1)"
+          node -e "const c=require('crypto'); const h=c.createHash('sha256').update('hardened-ci-proof').digest('hex'); if(h!=='8073bdf99161592a86944d023c2586f0da8aadf39e2e5d18906edac1e28f6cad') process.exit(1)"
 
   prove-policy:
     runs-on: ubuntu-latest
