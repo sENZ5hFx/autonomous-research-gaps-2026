@@ -14,6 +14,7 @@ concurrency:
   group: public-runner-proof-${{ github.ref }}
   cancel-in-progress: true
 
+# Execution proof only. No repository content is published by this workflow.
 jobs:
   prove-python:
     runs-on: ubuntu-latest
