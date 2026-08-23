@@ -1,0 +1,76 @@
+name: Public Runner Proof
+
+on:
+  push:
+    branches: ['ci/public-runner-proof']
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: public-runner-proof-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  prove-python:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout exact candidate
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Verify checkout identity
+        shell: bash
+        run: test "$(git rev-parse HEAD)" = "$GITHUB_SHA"
+      - name: Set up Python
+        uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7
+        with:
+          python-version: '3.11'
+      - name: Prove Python runtime
+        run: |
+          python --version
+          python - <<'PY'
+          import hashlib
+          payload = b'hardened-ci-proof'
+          assert hashlib.sha256(payload).hexdigest() == '4b5ac4f8c33278d756a2e17fae6923205599045d29f664cf0d19fbb778b7bb3e'
+          PY
+
+  prove-node:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout exact candidate
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Verify checkout identity
+        shell: bash
+        run: test "$(git rev-parse HEAD)" = "$GITHUB_SHA"
+      - name: Set up Node
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7
+        with:
+          node-version: '24'
+      - name: Prove Node runtime
+        run: |
+          node --version
+          node -e "const c=require('crypto'); const h=c.createHash('sha256').update('hardened-ci-proof').digest('hex'); if(h!=='4b5ac4f8c33278d756a2e17fae6923205599045d29f664cf0d19fbb778b7bb3e') process.exit(1)"
+
+  prove-policy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Checkout exact candidate
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Reject mutable external actions
+        shell: bash
+        run: |
+          set -euo pipefail
+          if grep -RInE 'uses:[[:space:]]+[^./][^@[:space:]]+@v[0-9]+' .github/workflows; then
+            echo 'Mutable action reference found.' >&2
+            exit 1
+          fi
+          echo 'All external action references in this proof are immutable.'
