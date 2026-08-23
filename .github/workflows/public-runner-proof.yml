@@ -1,6 +1,8 @@
 name: Public Runner Proof
 
 on:
+  pull_request:
+    branches: [main]
   push:
     branches: ['ci/public-runner-proof']
   workflow_dispatch:
