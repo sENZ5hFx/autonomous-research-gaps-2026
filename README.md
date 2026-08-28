@@ -1,18 +1,9 @@
-# autonomous-research-gaps-2026
+# Historical public research record — disclosure review
 
-Session output: genuine scientific gaps synthesis across realms — 2026-07-28.
+This repository contains an AI-assisted research-session record that was previously made public.
 
-## Scope
+The current default branch has been intentionally minimized while disclosure and protection strategy are reviewed. Detailed material from earlier public commits remains part of the historical public record; this change does **not** undo or retract prior disclosure.
 
-This repository preserves an AI-assisted/autonomous research-session output exploring **candidate** scientific and knowledge gaps across domains.
+No current statement here should be treated as proof of novelty, scientific validation, peer review, patentability, filing status, patent-pending status, or legal priority.
 
-## Evidence boundary
-
-- Terms such as **genuine**, **gap**, **novel**, or similar labels describe the session's research target or internal classification, not an independent scientific determination.
-- Session output may contain hypotheses, synthesis, inference, or incomplete source coverage and should be independently verified before reuse as fact.
-- A Git commit or timestamp records repository chronology/publication history. It is not peer review, experimental validation, a patent filing, or proof of legal priority.
-- Where the repository cites external work, the underlying source controls.
-
-## Intended use
-
-Treat this repository as a timestamped research log and hypothesis source, not as a substitute for primary literature or independent validation.
+Historical commits are preserved for provenance and future review. No additional detailed research or enabling mechanics should be added to the public branch without an explicit disclosure decision.
